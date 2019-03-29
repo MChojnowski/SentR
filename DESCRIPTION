@@ -5,7 +5,6 @@ Version: 0.1.0
 Author: Michal Chojnowski, Piotr Dybka
 Maintainer: Michal Chojnowski <michal.chojnowski@doktorant.sgh.waw.pl>
 Description: Library in the making.
-Use responsibly
 License: GNU I guess
 Encoding: UTF-8
 LazyData: true
