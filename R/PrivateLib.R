@@ -62,7 +62,7 @@ get_sents<-function(f_dane,Amat,opoznienie,szlif,frek=12){
 ### Bayesian Sim-Zhao
 getSentsB<-function(f_dane,Amat,opoznienie,opoz_B,szlif,bvec=c(1,1,1,1,1,1,1),frek=12){
 	f_poczatek<-c(1,1,1)
-	if(sum(class(dane_var)=="ts")>0){
+	if(sum(class(f_dane)=="ts")>0){
 		f_poczatek[1]<-start(f_dane)[1]	
 		f_poczatek[2]<-start(f_dane)[2]	
 		f_poczatek[3]<-start(f_dane)[3]	
