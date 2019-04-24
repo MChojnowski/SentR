@@ -1,12 +1,6 @@
 
 gridSearch <- function(data,ph,pl,sent,mean.sent=mean(sent),sd.sent=sd(sent),min.observ=60,grid.length=50,prob.lim=c(0,1)){
 
-  # Sense check
-  if(type !="mean" & type !="sd" & type !="all"){
-    cat("Wrong type! Please input either 'mean' or 'sd'")
-    break
-  }
-  
   # Parameters
   gridM <- qnorm(seq(0.01,0.99,length.out=grid.length),mean.sent,sd.sent)
   gridS <- seq(0.05,3,length.out=grid.length)
