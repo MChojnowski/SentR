@@ -4,7 +4,7 @@ gridSearch <- function(data,ph,pl,sent,mean.sent=mean(sent),sd.sent=sd(sent),min
   #Models  
   var_dflt <- vars::VAR(data,p=max(ph,pl))
   var_dflt_h <- vars::VAR(data,p=ph)
-  var_dflt_l <- vars::VAR(dane_monet,p=pl)
+  var_dflt_l <- vars::VAR(data,p=pl)
   
   # Parameters
   gridM <- qnorm(seq(0.01,0.99,length.out=grid.length),mean.sent,sd.sent)
