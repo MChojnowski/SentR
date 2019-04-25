@@ -212,5 +212,6 @@ gridSearch <- function(data,ph,pl,sent,mean.sent=mean(sent),sd.sent=sd(sent),min
               ,roots=mat.ROOTS
               ,aic=mat.AIC
               ,irf=mat.IRF
+              ,sent=sent
   ))
 }
