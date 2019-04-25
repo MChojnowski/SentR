@@ -1,5 +1,6 @@
 plotGrid <- function(grid){
   par(mfrow=c(2,2))
+  cord<-which(grid$sse == min(grid$sse), arr.ind = TRUE)
   
   graphics::filled.contour(grid$gridS
                  ,grid$gridM
