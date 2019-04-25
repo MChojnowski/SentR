@@ -33,5 +33,5 @@ plotGrid <- function(grid){
                            ,nlevels=96
   )
   
-  plot(pnorm(grid$sent,grid$sent$gridM[cord[2]],grid$sent$gridS[cord[1]]))
+  plot(pnorm(grid$sent,grid$gridM[cord[2]],grid$gridS[cord[1]]))
 }
