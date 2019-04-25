@@ -1,41 +1,31 @@
 plotGrid <- function(grid){
-  par(mfrow=c(2,2))
-  cord<-which(grid$sse == min(grid$sse), arr.ind = TRUE)
+  grid_sse <- grid$sse
+  colnames(grid_sse) <- 1:ncol(grid_sse)
   
-  graphics::filled.contour(grid$gridS
-                 ,grid$gridM
-                 ,as.matrix(grid$sse)
-                 ,xlab="Sd"
-                 ,ylab="Mean"
-                 ,color.palette = matlab.like2
-                 ,main="GridSearch"
-                 ,nlevels=96
-                 ,plot.axes={points(grid$gridS[cord[1]],grid$gridM[cord[2]],pch=19,col="orange");axis(1);axis(2)}
-  )
+  grid_sse <- as.tibble(grid_sse) %>%
+    add_column(Mean=1:nrow(.),.before=1) %>%
+    gather(key="Sd",value="SSE",-1) %>%
+    mutate(Sd=as.numeric(Sd))
   
-  graphics::filled.contour(grid$gridS
-                           ,grid$gridM
-                           ,as.matrix(grid$roots)
-                           ,xlab="Sd"
-                           ,ylab="Mean"
-                           ,color.palette = matlab.like2
-                           ,main="GridSearch"
-                           ,nlevels=96
-  )
+  grid_roots <- grid$roots
+  colnames(grid_roots) <- 1:ncol(grid_roots)
   
-  grid$sse[grid$roots>=1]<-Inf
-  cord<-which(grid$sse == min(grid$sse), arr.ind = TRUE)
+  grid_roots <- as.tibble(grid_roots) %>%
+    add_column(Mean=1:nrow(.),.before=1) %>%
+    gather(key="Sd",value="MinRoot",-1) %>%
+    mutate(Sd=as.numeric(Sd)) 
   
-  graphics::filled.contour(grid$gridS
-                           ,grid$gridM
-                           ,as.matrix(grid$sse)
-                           ,xlab="Sd"
-                           ,ylab="Mean"
-                           ,color.palette = matlab.like2
-                           ,main="GridSearch"
-                           ,nlevels=96
-                           ,plot.axes={points(grid$gridS[cord[1]],grid$gridM[cord[2]],pch=19,col="orange");axis(1);axis(2)}
-  )
+  plot_data <- left_join(grid_sse,grid_roots,by=c("Mean","Sd"))
   
-  plot(pnorm(grid$sent,grid$gridM[cord[2]],grid$gridS[cord[1]]))
-}
+  cord <- plot_data %>%
+    filter(MinRoot < 1) %>%
+    filter(SSE==min(SSE))
+  
+  ggplot(plot_data,aes(x = Mean, y = Sd)) +
+    geom_raster(aes(fill = SSE)) +
+    scale_fill_gradientn(colors = matlab.like2(20),na.value="white") +
+    geom_contour(mapping = aes(z = SSE),col="grey",bins=40) +
+    geom_contour(mapping = aes(z = MinRoot),col="white",breaks=1,lty=4,lwd=1) +
+    geom_point(data = cord,aes(size=3,color="red"),pch= 12)
+  }
+
