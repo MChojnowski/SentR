@@ -1,4 +1,4 @@
-plotGrid <- function(grid,sent){
+plotGrid <- function(grid){
   par(mfrow=c(2,2))
   
   graphics::filled.contour(grid$gridS
