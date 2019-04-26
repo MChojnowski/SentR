@@ -45,8 +45,8 @@ plotIRF.aux <- function(model,imp,res,h,ci,nboot,main){
        ,lwd = 3
        ,lty = 2
        ,col = "red"
-       ,ylab = paste("Impulse of ",imp)
-       ,xlab = res
+       ,ylab = res
+       ,xlab = "Horizon"
        ,ylim = range(c(unlist(var_plot$Lower)
                      ,unlist(var_plot$Upper)))
        ,main = main
@@ -55,16 +55,6 @@ plotIRF.aux <- function(model,imp,res,h,ci,nboot,main){
   lines(x=c(1:(h+1)),y=unlist(var_plot$Upper),type="l",lwd = 3,lty=2,col="red")
   lines(x=c(1:(h+1)),y=unlist(var_plot$irf),type="l", lwd = 3)
   abline(h = 0)
-  
-}
-
-
-##### IRF 3D #####
-irf3D <- function(){
-  
-}
-##### Plot IRF 3D #####
-ploIRF3D <- function(){
   
 }
 
