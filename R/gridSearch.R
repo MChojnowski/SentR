@@ -207,7 +207,7 @@ gridSearch <- function(data,ph,pl,sent,mean.sent=mean(sent),sd.sent=sd(sent),min
   }
   
   cord_sse <- mat.SSE
-  cord_sse[roots >= 1] <- Inf
+  cord_sse[mat.ROOTS >= 1] <- Inf
   cord_sse <- which(cord_sse == min(cord_sse), arr.ind = TRUE)
   
   return(list(gridM=gridM
