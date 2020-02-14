@@ -1,5 +1,5 @@
 
-gridSearch <- function(data,ph,pl,sent,mean.sent=mean(sent),sd.sent=sd(sent),min.observ=60,grid.length=50,prob.lim=c(0,1)){
+gridSearch <- function(data,ph,pl,sent,mean.sent=mean(sent),sd.sent=sd(sent),min.observ=60,grid.length=50,prob.lim=c(0,1),stable_param=1){
 
   #Models  
   var_dflt <- vars::VAR(data,p=max(ph,pl))
@@ -207,7 +207,7 @@ gridSearch <- function(data,ph,pl,sent,mean.sent=mean(sent),sd.sent=sd(sent),min
   }
   
   cord_sse <- mat.SSE
-  cord_sse[mat.ROOTS >= 1] <- Inf
+  cord_sse[mat.ROOTS >= stable_param] <- Inf
   cord_sse <- which(cord_sse == min(cord_sse), arr.ind = TRUE)
   
   return(list(gridM=gridM
