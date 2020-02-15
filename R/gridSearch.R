@@ -67,15 +67,15 @@ gridSearch <- function(data,ph,pl,sent,mean.sent=mean(sent),sd.sent=sd(sent),min
           if(colnames(dane_all_org)[1] %in% colnames(var_dflt_h$y)){varh}else{NULL}
           ,if(colnames(dane_all_org)[1] %in% colnames(var_dflt_l$y)){varl}else{NULL})
           ])
-        r2<-lm(dane_all[,1]~dane_all[,c(
+        r2<-lm(dane_all[,2]~dane_all[,c(
           if(colnames(dane_all_org)[2] %in% colnames(var_dflt_h$y)){varh}else{NULL}
           ,if(colnames(dane_all_org)[2] %in% colnames(var_dflt_l$y)){varl}else{NULL})
           ])
-        r3<-lm(dane_all[,1]~dane_all[,c(
+        r3<-lm(dane_all[,3]~dane_all[,c(
           if(colnames(dane_all_org)[3] %in% colnames(var_dflt_h$y)){varh}else{NULL}
           ,if(colnames(dane_all_org)[3] %in% colnames(var_dflt_l$y)){varl}else{NULL})
           ])
-        r4<-lm(dane_all[,1]~dane_all[,c(
+        r4<-lm(dane_all[,4]~dane_all[,c(
           if(colnames(dane_all_org)[4] %in% colnames(var_dflt_h$y)){varh}else{NULL}
           ,if(colnames(dane_all_org)[4] %in% colnames(var_dflt_l$y)){varl}else{NULL})
           ])
