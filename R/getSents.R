@@ -13,7 +13,7 @@ getSents <- function(data,lagV,lagB,rep=32,Amat=diag(1,ncol(data),ncol(data)),Bm
   BVAR_sent <- list()
   
   for(i in 1:rep){
-    model_bsvar <- MSBVAR::szbsvar(data,lagB,exodata,bvec[1],bvec[2],bvec[3],bvec[4],bvec[5],bvec[6],bvec[7],model_svar$A,)
+    model_bsvar <- szbsvar(data,lagB,exodata,bvec[1],bvec[2],bvec[3],bvec[4],bvec[5],bvec[6],bvec[7],model_svar$A,)
     signal <- t(solve(model_bsvar$A0.mode) %*% t(model_bsvar$structural.innovations))
     
     x2<-NULL

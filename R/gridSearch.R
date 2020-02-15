@@ -218,5 +218,6 @@ gridSearch <- function(data,ph,pl,sent,mean.sent=mean(sent),sd.sent=sd(sent),min
               ,irf=mat.IRF
               ,sent=sent
               ,optparam=c(gridS[cord_sse[1]],gridM[cord_sse[2]])
+              ,stable_param=stable_param
   ))
 }
