@@ -1,4 +1,4 @@
-getSents <- function(data,lagV,lagB,rep=32,Amat=diag(1,ncol(data),ncol(data)),Bmat=matrix(as.numeric(diag(NA,ncol(data),ncol(data))),ncol(data),ncol(data)),exodata=NULL,bvec=c(1,1,1,1,1,1,1)){ 
+getSents <- function(data,lagV,lagB,rep=32,Amat=diag(1,ncol(data),ncol(data)),Bmat=matrix(as.numeric(diag(NA,ncol(data),ncol(data))),ncol(data),ncol(data)),exodata=NULL,bvec=c(1,1,1,1,1,1,1),qm=4){ 
   
   #Sense check
   if (sum(class(data) %in% "ts")==0){
@@ -13,7 +13,7 @@ getSents <- function(data,lagV,lagB,rep=32,Amat=diag(1,ncol(data),ncol(data)),Bm
   BVAR_sent <- list()
   
   for(i in 1:rep){
-    model_bsvar <- szbsvar(data,lagB,exodata,bvec[1],bvec[2],bvec[3],bvec[4],bvec[5],bvec[6],bvec[7],model_svar$A,)
+    model_bsvar <- szbsvar(data,lagB,exodata,bvec[1],bvec[2],bvec[3],bvec[4],bvec[5],bvec[6],bvec[7],model_svar$A,qm=qm)
     signal <- t(solve(model_bsvar$A0.mode) %*% t(model_bsvar$structural.innovations))
     
     x2<-NULL
