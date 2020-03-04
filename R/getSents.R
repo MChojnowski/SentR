@@ -1,3 +1,21 @@
+#' getSents function
+#' 
+#' This function allows you to extract martker sentiments from historical data.
+#' @param data  - time series data , ordered ia specific way ($IP_{1}, IP_{2},...,CR_{1},CR_{2}$)
+#' @param lagV - number of lags for SVAR model ($A_{0}$ is approximated based on it)
+#' @param lagB - number og lags for SZBSVAR model
+#' @param rep [optional] - numbre of repetitions of SZSBVAR model. Default is 32
+#' @param Amat [optional]- $A_{0}$ matrix for SvAR model. Default is an identity matrix
+#' @param Bmat [optional] - $B$ matrix for SVAR model. Default is an identity matrix
+#' @param exodata [optional] - matrix with exogeneous data. Defaultis NULL
+#' @param bvec [optional] - vector with metaparameters required for Sim-Zha BSVAR model. Default is a vector with 1.
+#' @param qm [optional] - scalar representing the frequency of the data. As of now either 4 or 12 are available. Any other number different than 12 is regarding as 4. Default is 4.
+#' @author Michal Chojnowski
+#' @keywords Bayesian SVAR, sentiments, extraction
+#' @example getSents()
+
+
+
 getSents <- function(data,lagV,lagB,rep=32,Amat=diag(1,ncol(data),ncol(data)),Bmat=matrix(as.numeric(diag(NA,ncol(data),ncol(data))),ncol(data),ncol(data)),exodata=NULL,bvec=c(1,1,1,1,1,1,1),qm=4){ 
   
   #Sense check
