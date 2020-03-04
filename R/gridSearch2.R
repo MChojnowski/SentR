@@ -37,11 +37,12 @@ gridSearch2 <- function(data,ph,pl,sent,mean.sent=mean(sent),sd.sent=sd(sent),mi
       
       setTxtProgressBar(pb, ((which(FctM==gridM)-1)*length(gridS)+which(FctS==gridS)))
       
-      prob<-pnorm(sent,FctM,FctS)
+      prob <- pnorm(sent,FctM,FctS)
       
       if(length(prob[round(prob,2)>prob.lim[1] & round(prob,2)<prob.lim[2]])>min.observ){
 
-        stsvar_model <- STSVAR(data,ph,pl,prob)
+        stsvar_model <- STSVAR(data,ph,pl,as.vector(prob))
+
         var_dflt_h <- stsvar_model$varH
         var_dflt_l <- stsvar_model$varL
         
